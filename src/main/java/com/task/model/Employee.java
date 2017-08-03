@@ -3,7 +3,7 @@ package com.task.model;
 /**
  * @author Dmitriy Lyashenko
  */
-public class Employee {
+public class Employee implements Comparable<Employee>{
 
     private String name;
     private String surname;
@@ -95,5 +95,10 @@ public class Employee {
                 ", city='" + city + '\'' +
                 ", income=" + income +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Employee other) {
+        return this.getSurname().compareTo(other.getSurname());
     }
 }

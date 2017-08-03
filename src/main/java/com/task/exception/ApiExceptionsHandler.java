@@ -23,6 +23,7 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.validation.ConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,16 @@ public class ApiExceptionsHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorMessage> handleAll(Exception ex) {
+        ApiErrorMessage message =
+                ApiErrorMessage.builder(ApiErrorStatus.OTHER_EXCEPTION)
+                        .httpStatus(HttpStatus.BAD_REQUEST.value())
+                        .exceptionMessage(ex.getMessage())
+                        .build();
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ApiErrorMessage> handleConstraintViolationException(ConstraintViolationException ex) {
         ApiErrorMessage message =
                 ApiErrorMessage.builder(ApiErrorStatus.OTHER_EXCEPTION)
                         .httpStatus(HttpStatus.BAD_REQUEST.value())
