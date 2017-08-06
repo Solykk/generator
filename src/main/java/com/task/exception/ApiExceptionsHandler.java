@@ -48,7 +48,7 @@ public class ApiExceptionsHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ApiErrorMessage> handleConstraintViolationException(ConstraintViolationException ex) {
         ApiErrorMessage message =
-                ApiErrorMessage.builder(ApiErrorStatus.OTHER_EXCEPTION)
+                ApiErrorMessage.builder(ApiErrorStatus.UNACCEPTABLE_CAPACITY_EXCEPTION)
                         .httpStatus(HttpStatus.BAD_REQUEST.value())
                         .exceptionMessage(ex.getMessage())
                         .build();

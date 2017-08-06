@@ -11,9 +11,6 @@ public class Employee implements Comparable<Employee>{
     private String city;
     private Integer income;
 
-    public Employee() {
-    }
-
     public Employee(String name, String surname, String position, String city, Integer income) {
         this.name = name;
         this.surname = surname;

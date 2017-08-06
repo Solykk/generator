@@ -36,7 +36,7 @@ public class GeneratorRepositoryTest {
         List<Employee> employeesGet = generatorRepository.getCollection();
 
         //Then
-        assertEquals( employeesGet, employees);
+        assertEquals(employeesGet, employees);
     }
 
     @Autowired

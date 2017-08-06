@@ -39,8 +39,10 @@ public class CollectionGenerator {
         if (capacity == 1) {
             if (random.nextBoolean()) {
                 manCount = 1;
+                womanCount = 0;
             } else {
                 womanCount = 1;
+                manCount = 0;
             }
         } else {
             womanCount = capacity / 2 - (capacity / 2) / 5;
@@ -106,10 +108,38 @@ public class CollectionGenerator {
     }
 
     private String createSurname(String name, String surnameEnding) {
+        if (name.endsWith("ей") || name.endsWith("ий")) {
+            if (surnameEnding.equals("цкий")
+                || surnameEnding.equals("кин")
+                || surnameEnding.equals("ев")
+                || surnameEnding.equals("цов")
+                || surnameEnding.equals("цев")
+                || surnameEnding.equals("евцев")
+                || surnameEnding.equals("ец")
+                || surnameEnding.equals("енко")
+                || surnameEnding.equals("енков")){
+                return name.substring(0, name.length() - 1) + surnameEnding;
+            } else if (surnameEnding.equals("ский")) {
+                return name + surnameEnding;
+            } else {
+                return name.substring(0, name.length() - 2) + surnameEnding;
+            }
+        }
+
+        if (name.endsWith("а") || name.endsWith("я")) {
+            if (surnameEnding.equals("цкий")
+                || surnameEnding.equals("ев")
+                || surnameEnding.equals("евцев")){
+                return name + surnameEnding;
+            } else {
+                return name.substring(0, name.length() - 1) + surnameEnding;
+            }
+        }
+
         return name + surnameEnding;
     }
 
-    @Scheduled(cron = "* */3600 * * * *")
+    @Scheduled(cron = "59 0/59 * * * *")
     private void onSchedule() {
         if (capacity != 0){
             generate();

@@ -11,6 +11,12 @@ public enum ApiErrorStatus {
             "For this exception we have no comment :("
     ),
 
+    UNACCEPTABLE_CAPACITY_EXCEPTION(
+            "3",
+            "You request is not valid",
+            "Not valid capacity of expected collection, MIN=1 MAX=7000"
+    ),
+
     SPRING_EXCEPTION(
             "100",
             "Oops something went wrong :(",
